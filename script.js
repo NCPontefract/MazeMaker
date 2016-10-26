@@ -233,7 +233,7 @@ function mazeLoop() {
   } else {
     displayGrid();
     current.display();
-    document.getElementById("solveClick").innerHTML = "Solve.";
+    document.getElementById("buttonzone").innerHTML = "<button onclick=\"solveMaze()\">Solve.</button>";
     console.log("Done!");
     //setTimeout(function() {alert("Maze Generated!");}, 100);
     document.getElementById("textout").innerHTML = "Stack size: " + stack.length;
