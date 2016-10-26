@@ -18,6 +18,9 @@ const RED = "255,0,0,";
 const GREEN = "0,255,0,";
 const BLUE = "0,0,255,";
 const BACKCOL = "32,32,32,";
+const AQUA = "0,255,255,";
+const MAGENTA = "255,0,255,";
+const YELLOW = "255,255,0,";
 
 var canvas = document.querySelector("canvas");
 var context = canvas.getContext("2d");
@@ -32,6 +35,8 @@ var current;
 // but some function calls between files would be broken depending on the order in which
 // the two files are included in index.html
 function Cell(i, j) {
+  this.heuristic;
+  this.solved = false; // Whether or not this cell is part of a 'solution'.
   this.i = i;
   this.j = j;
   this.x = i * SIZE;
@@ -39,6 +44,34 @@ function Cell(i, j) {
   this.visited = false;
   //           top, right, bottom, left.
   this.walls = [true, true, true, true];
+
+  // Function to return an array of un-solved neighbors.
+  this.getValidOptions = function() {
+    var neighbors = [];
+    //top.
+    if (!this.walls[0]) {
+      neighbors.push(grid[this.j-1][this.i]);
+    }
+    //right.
+    if (!this.walls[1]) {
+      neighbors.push(grid[this.j][this.i+1]);
+    }
+    //bottom.
+    if (!this.walls[2]) {
+      neighbors.push(grid[this.j+1][this.i]);
+    }
+    //left.
+    if (!this.walls[3]) {
+      neighbors.push(grid[this.j][this.i-1]);
+    }
+    var valid = [];
+    for (var i = 0; i < neighbors.length; i++) {
+      if (!(neighbors[i].solved)) {
+        valid.push(neighbors[i]);
+      }
+    }
+    return valid;
+  }
 
   // Function to return a random unvisited neighbor.
   this.checkNeighbors = function() {
@@ -200,6 +233,7 @@ function mazeLoop() {
   } else {
     displayGrid();
     current.display();
+    document.getElementById("solveClick").innerHTML = "Solve.";
     console.log("Done!");
     //setTimeout(function() {alert("Maze Generated!");}, 100);
     document.getElementById("textout").innerHTML = "Stack size: " + stack.length;
