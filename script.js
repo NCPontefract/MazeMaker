@@ -66,7 +66,7 @@ function Cell(i, j) {
     }
     var valid = [];
     for (var i = 0; i < neighbors.length; i++) {
-      if (!(neighbors[i].solved)) {
+      if (neighbors[i].solved == false) {
         valid.push(neighbors[i]);
       }
     }
@@ -233,8 +233,9 @@ function mazeLoop() {
   } else {
     displayGrid();
     current.display();
-    document.getElementById("buttonzone").innerHTML = "<button onclick=\"solveMaze()\">Solve.</button>";
+    document.getElementById("buttonzone").innerHTML = "<button id=\"solveButton\"onclick=\"solveMaze()\" onkeypress=\"solveMaze()\">Solve.</button>";
     console.log("Done!");
+    built = true;
     //setTimeout(function() {alert("Maze Generated!");}, 100);
     document.getElementById("textout").innerHTML = "Stack size: " + stack.length;
   }
@@ -248,6 +249,7 @@ function drawMaze() {
   setTimeout(mazeLoop, 500);
 }
 var grid = [];
+var built = false;
 const SIZE = 20;
 var columns = Math.floor(width / SIZE);
 var rows = Math.floor(height / SIZE);
