@@ -109,8 +109,8 @@ function solveLoop(start, goal) {
 }
 
 function solveAStar() {
-  //var goal = grid[Math.floor(Math.random() * grid.length)][Math.floor(Math.random() * grid[0].length)]; // The target cell.
-  var goal = grid[grid.length-1][grid[0].length-1];
+  var goal = grid[Math.floor(Math.random() * grid.length)][Math.floor(Math.random() * grid[0].length)]; // The target cell.
+  //var goal = grid[grid.length-1][grid[0].length-1];
   var start = grid[0][0]; // The start cell.
   //var start = grid[Math.floor(Math.random() * grid.length)][Math.floor(Math.random() * grid[0].length)]; // The start cell.
   for (var i = 0; i < grid[0].length; i++) {
