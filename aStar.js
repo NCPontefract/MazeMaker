@@ -83,6 +83,15 @@ function getLowest() {
   return lowest;
 }
 
+// Function to retrace the final path.
+function tracePath(path, cell) {
+  path.push(cell);
+  for (var i = 0; i < path.length; i++) {
+    path[i].display(AQUA);
+  }
+  setTimeout(function(){tracePath(path, cell.parent);}, 10);
+}
+
 // Function to iterate to solve the maze.
 function solveLoop(start, goal) {
   clearCanv(BACKCOL);
@@ -104,6 +113,9 @@ function solveLoop(start, goal) {
   getChildren(nextCell);
   if (!contains(closedList, goal)) {
     setTimeout(function(){solveLoop(start, goal);}, 5)
+  } esle {
+    var path = [];
+    setTimeout(funtion(){tracePath(path, goal);}, 10);
   }
 }
 
