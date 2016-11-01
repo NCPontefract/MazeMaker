@@ -113,7 +113,7 @@ function solveLoop(start, goal) {
   getChildren(nextCell);
   if (!contains(closedList, goal)) {
     setTimeout(function(){solveLoop(start, goal);}, 5)
-  } esle {
+  } else {
     var path = [];
     setTimeout(funtion(){tracePath(path, goal);}, 10);
   }
