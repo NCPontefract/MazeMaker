@@ -115,7 +115,7 @@ function solveLoop(start, goal) {
     setTimeout(function(){solveLoop(start, goal);}, 5)
   } else {
     var path = [];
-    setTimeout(funtion(){tracePath(path, goal);}, 10);
+    setTimeout(function(){tracePath(path, goal);}, 10);
   }
 }
 
