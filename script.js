@@ -254,7 +254,7 @@ function drawMaze() {
 }
 var grid = [];
 var built = false;
-const SIZE = 40;
+const SIZE = 20;
 var columns = Math.floor(width / SIZE);
 var rows = Math.floor(height / SIZE);
 drawMaze();
