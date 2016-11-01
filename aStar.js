@@ -99,7 +99,6 @@ function solveLoop(start, goal) {
   var nextCell = getLowest();
   nextCell.display(BLUE);
   openList.splice(nextCell, 1);
-  console.log(openList);
   closedList.push(nextCell);
   nextCell.solved = true;
   getChildren(nextCell);
