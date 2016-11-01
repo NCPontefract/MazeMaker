@@ -83,7 +83,13 @@ function getLowest() {
 
 // Function to iterate to solve the maze.
 function solveLoop() {
+  for (var i = 0; i < solveStack.length; i++) {
+    solveStack[i].display(MAGENTA);
+  }
+  goal.display(YELLOW);
+  start.display(GREEN);
   var nextCell = getLowest();
+  nextCell.display(BLUE);
   openList.splice(nextCell, 1);
   closedList.push(nextCell);
   getChildren(nextCell);
