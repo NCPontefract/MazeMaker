@@ -105,7 +105,7 @@ function solveLoop(start, goal) {
   nextCell.solved = true;
   getChildren(nextCell);
   if (!contains(closedList, goal)) {
-    setTimeout(function(){solveLoop(start, goal);}, 50)
+    setTimeout(function(){solveLoop(start, goal);}, 5)
   }
 }
 
