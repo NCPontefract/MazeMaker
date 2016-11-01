@@ -115,5 +115,21 @@ function solveAStar() {
   
   startPath(start);
   getChildren[start];
+  clearCanv(BACKCOL);
+  displayGrid();
+  for (var i = 0; i < closedList.length; i++) {
+    closedList[i].display(MAGENTA);
+  }
+  goal.display(YELLOW);
+  start.display(GREEN);
+  getChildren(start);
+  var nextCell = getLowest();
+  nextCell.display(BLUE);
+  openList.splice(nextCell, 1);
+  closedList.push(nextCell);
+  getChildren(nextCell);
+  if (!contains(closedList, goal)) {
+    setTimeout(solveLoop, 5)
+  }
   solveLoop(start, goal);
 }
