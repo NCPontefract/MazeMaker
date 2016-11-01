@@ -60,6 +60,7 @@ function getChildren(cell) {
       setGcost(neighbors[i]);
       setFcost(neighbors[i]);
     }
+    checkNewParent(neighbors[i], cell);
     // If the cell isn't in the open list...
     if (!contains(openList, neighbors[i])) {
       // ...add the cell to the open list.
@@ -80,11 +81,15 @@ function getLowest() {
   return lowest;
 }
 
+// Function to iterate to solve the maze.
 function solveLoop() {
   var nextCell = getLowest();
   openList.splice(nextCell, 1);
   closedList.push(nextCell);
   getChildren(nextCell);
+  if (!contains(closedList, goal)) {
+    setTimeout(solveLoop, 5)
+  }
 }
 
 function solveAStar() {
@@ -95,4 +100,12 @@ function solveAStar() {
       grid[j][i].solved = false;
     }
   }
+  var goal = grid[Math.floor(Math.random() * grid.length)][Math.floor(Math.random() * grid[0].length)]; // The target cell.
+  //var goal = grid[grid.length-1][grid[0].length-1];
+  var start = grid[0][0]; // The start cell.
+  //var start = grid[Math.floor(Math.random() * grid.length)][Math.floor(Math.random() * grid[0].length)]; // The start cell.
+  
+  startPath(start);
+  getChildren[start];
+  solveLoop();
 }
