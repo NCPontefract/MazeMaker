@@ -1,3 +1,14 @@
+// Function to check if an array contains an object.
+function contains(a, obj) {
+  for (var i = 0; i < a.length; i++) {
+    if (a[i] == obj) {
+      //alert();
+      return true;
+    }
+  }
+  return false;
+}
+
 // This is where I will implement the A* search algorithm in order to optimise finding a shortest solution.
 
 var openList = [];
@@ -21,4 +32,13 @@ function setFcost(cell) {
 // Function to get the Manhattan heuristic distance between 2 cells.
 function manhattanDist(cell1, goal) {
   return (Math.abs(cell1.i - goal.i) + Math.abs(cell1.j - goal.j));
+}
+
+function getChildren(cell) {
+  var neighbors = cell.getValidOptions(); // Get the neighbors.
+  for (var i = 0; i < neighbors.length; i++) {
+    if (!contains(openList, neighbors[i])) {
+      openList.push(neighbors[i]);
+    }
+  }
 }
