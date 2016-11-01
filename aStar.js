@@ -55,6 +55,7 @@ function checkNewParent(cell, parent) {
 function getChildren(cell) {
   var neighbors = cell.getValidOptions(); // Get the neighbors.
   for (var i = 0; i < neighbors.length; i++) {
+    checkNewParent(neighbors[i], cell);
     if (!neighbors[i].fCost) {
       // Set the f-cost of the neighbor.
       setGcost(neighbors[i]);
@@ -124,6 +125,7 @@ function solveAStar() {
   start.display(GREEN);
   getChildren(start);
   var nextCell = getLowest();
+  nextCell.parent = start;
   nextCell.display(BLUE);
   openList.splice(nextCell, 1);
   closedList.push(nextCell);
