@@ -1,4 +1,5 @@
   // Here is where I will implement the A* search.
+  // Edit: A* will be in aStar.js
 
 // Function to check if an array contains an object.
 function contains(a, obj) {
