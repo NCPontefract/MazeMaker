@@ -91,7 +91,9 @@ function tracePath(path, cell) {
       path[i].display("100,100,100,");
     }
   }
-  setTimeout(function(){tracePath(path, cell.parent);}, 10);
+  if (cell.parent) {
+    setTimeout(function(){tracePath(path, cell.parent);}, 10);
+  }
 }
 
 // Function to iterate to solve the maze.
