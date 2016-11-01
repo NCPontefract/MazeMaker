@@ -128,8 +128,5 @@ function solveAStar() {
   openList.splice(nextCell, 1);
   closedList.push(nextCell);
   getChildren(nextCell);
-  if (!contains(closedList, goal)) {
-    setTimeout(solveLoop, 5)
-  }
   solveLoop(start, goal);
 }
