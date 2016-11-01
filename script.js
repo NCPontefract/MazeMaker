@@ -236,7 +236,8 @@ function mazeLoop() {
   } else {
     displayGrid();
     current.display();
-    document.getElementById("buttonzone").innerHTML = "<button id=\"solveButton\"onclick=\"solveMaze()\" onkeypress=\"solveMaze()\">Solve.</button>";
+    //document.getElementById("buttonzone").innerHTML = "<button id=\"solveButton\"onclick=\"solveMaze()\" onkeypress=\"solveMaze()\">Solve.</button>";
+    document.getElementById("buttonzone").innerHTML = "<button id=\"solveButton\"onclick=\"solveAStar()\" onkeypress=\"solveMaze()\">Solve.</button>";
     console.log("Done!");
     built = true;
     //setTimeout(function() {alert("Maze Generated!");}, 100);
