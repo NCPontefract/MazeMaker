@@ -35,6 +35,7 @@ function manhattanDist(cell1, goal) {
 }
 
 // Function to check if new route to a cell is better than current.
+// and set the cell's parent, g-cost, and f-cost accordingly.
 function checkNewParent(cell, parent) {
   // If parent exists and cell's g-cost is lower using new parent.
   if (cell.parent) {
@@ -54,9 +55,16 @@ function checkNewParent(cell, parent) {
 function getChildren(cell) {
   var neighbors = cell.getValidOptions(); // Get the neighbors.
   for (var i = 0; i < neighbors.length; i++) {
+    // If the cell isn't in the open list...
     if (!contains(openList, neighbors[i])) {
+      // ...add the cell to the open list.
       openList.push(neighbors[i]);
     }
   }
 }
 
+
+
+function solveAStar() {
+  console.log("go away.");
+}
