@@ -88,7 +88,7 @@ function tracePath(path, cell) {
   path.push(cell);
   for (var i = 0; i < path.length; i++) {
     if (path[i]) {
-      path[i].display("51,51,51,");
+      path[i].display("100,100,100,");
     }
   }
   setTimeout(function(){tracePath(path, cell.parent);}, 10);
