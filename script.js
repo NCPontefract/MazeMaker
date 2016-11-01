@@ -36,6 +36,7 @@ var current;
 // the two files are included in index.html
 function Cell(i, j) {
   this.heuristic;
+  this.parent;
   this.solved = false; // Whether or not this cell is part of a 'solution'.
   this.i = i;
   this.j = j;
