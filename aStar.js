@@ -55,16 +55,44 @@ function checkNewParent(cell, parent) {
 function getChildren(cell) {
   var neighbors = cell.getValidOptions(); // Get the neighbors.
   for (var i = 0; i < neighbors.length; i++) {
+    if (!neighbors[i].fCost) {
+      // Set the f-cost of the neighbor.
+      setGcost(neighbors[i]);
+      setFcost(neighbors[i]);
+    }
     // If the cell isn't in the open list...
     if (!contains(openList, neighbors[i])) {
       // ...add the cell to the open list.
+      neighbors[i].solved = true;
       openList.push(neighbors[i]);
     }
   }
 }
 
+// Function to return the cell with the lowest f-cost in the open list.
+function getLowest() {
+  var lowest = openList[0];
+  for (var i = 0; i < openList.length; i++) {
+    if (openList[i].fCost < lowest.fCost) {
+      lowest = openList[i];
+    }
+  }
+  return lowest;
+}
 
+function solveLoop() {
+  var nextCell = getLowest();
+  openList.splice(nextCell, 1);
+  closedList.push(nextCell);
+  getChildren(nextCell);
+}
 
 function solveAStar() {
   console.log("go away.");
+  for (var i = 0; i < grid[0].length; i++) {
+    for (var j = 0; j < grid.length; j++) {
+      grid[j][i].heuristic = manhattanDist(grid[j][i], goal);
+      grid[j][i].solved = false;
+    }
+  }
 }
