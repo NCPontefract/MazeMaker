@@ -23,7 +23,7 @@ function startPath(cell) {
 }
 // Function to set the g-cost of a cell.
 function setGcost(cell) {
-  cell.gCost = grid[cell.Parent].gCost + 1;
+  cell.gCost = cell.parent.gCost + 1;
 }
 // Function to set the f-cost of a cell.
 function setFcost(cell) {
@@ -34,6 +34,18 @@ function manhattanDist(cell1, goal) {
   return (Math.abs(cell1.i - goal.i) + Math.abs(cell1.j - goal.j));
 }
 
+// Function to check if new route to a cell is better than current.
+function checkNewParent(cell, parent) {
+  // If parent exists and cell's g-cost is lower using new parent.
+  if (cell.parent) {
+    if (cell.gCost > parent.gCost + 1) {
+      cell.parent = parent;
+      setGcost(cell);
+    }
+  }
+}
+
+// Function to add a cell's valid children to the open list.
 function getChildren(cell) {
   var neighbors = cell.getValidOptions(); // Get the neighbors.
   for (var i = 0; i < neighbors.length; i++) {
@@ -42,3 +54,4 @@ function getChildren(cell) {
     }
   }
 }
+
