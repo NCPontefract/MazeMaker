@@ -97,6 +97,7 @@ function solveLoop(start, goal) {
   openList.splice(nextCell, 1);
   console.log(openList);
   closedList.push(nextCell);
+  openList = [];
   for (i = 0; i < closedList.length; i++) {
     getChildren(i);
   }
