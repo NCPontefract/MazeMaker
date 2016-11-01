@@ -99,7 +99,7 @@ function solveLoop(start, goal) {
   closedList.push(nextCell);
   openList = [];
   for (i = 0; i < closedList.length; i++) {
-    getChildren(i);
+    getChildren(closedList[i]);
   }
   getChildren(nextCell);
   if (!contains(closedList, goal)) {
