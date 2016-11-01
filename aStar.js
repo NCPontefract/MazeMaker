@@ -66,7 +66,7 @@ function getChildren(cell) {
     // If the cell isn't in the open list...
     if (!contains(openList, neighbors[i])) {
       // ...add the cell to the open list.
-      neighbors[i].solved = true;
+      neighbors[i].solved = false;
       openList.push(neighbors[i]);
     }
   }
