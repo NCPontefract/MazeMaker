@@ -40,7 +40,6 @@ function Cell(i, j) {
   this.gCost;
   this.fCost;
   this.solved = false; // Whether or not this cell is part of a 'solution'. For the greedy solver.
-  this.searched = false; // For the a* algorithm.
   this.i = i;
   this.j = j;
   this.x = i * SIZE;
