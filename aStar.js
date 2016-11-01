@@ -28,7 +28,7 @@ function setGcost(cell) {
 }
 // Function to set the f-cost of a cell.
 function setFcost(cell) {
-  cell.fCost = cell.heuristic + cell.gCost;
+  cell.fCost = cell.heuristic*4 + cell.gCost;
 }
 // Function to get the Manhattan heuristic distance between 2 cells.
 function manhattanDist(cell1, goal) {
