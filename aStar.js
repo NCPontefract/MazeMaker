@@ -97,12 +97,11 @@ function solveLoop(start, goal) {
   closedList.push(nextCell);
   getChildren(nextCell);
   if (!contains(closedList, goal)) {
-    setTimeout(solveLoop, 5)
+    setTimeout(funtion(){solveLoop(start, goal);}, 5)
   }
 }
 
 function solveAStar() {
-  console.log("go away.");
   var goal = grid[Math.floor(Math.random() * grid.length)][Math.floor(Math.random() * grid[0].length)]; // The target cell.
   //var goal = grid[grid.length-1][grid[0].length-1];
   var start = grid[0][0]; // The start cell.
