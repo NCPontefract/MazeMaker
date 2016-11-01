@@ -89,6 +89,7 @@ function solveLoop(start, goal) {
   displayGrid();
   for (var i = 0; i < closedList.length; i++) {
     closedList[i].display(MAGENTA);
+    getChildren(closedList[i]);
   }
   goal.display(YELLOW);
   start.display(GREEN);
@@ -97,9 +98,6 @@ function solveLoop(start, goal) {
   openList.splice(nextCell, 1);
   console.log(openList);
   closedList.push(nextCell);
-  for (i = 0; i < closedList.length; i++) {
-    getChildren(closedList[i]);
-  }
   getChildren(nextCell);
   if (!contains(closedList, goal)) {
     setTimeout(function(){solveLoop(start, goal);}, 5)
