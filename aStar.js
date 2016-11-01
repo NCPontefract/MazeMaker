@@ -102,16 +102,16 @@ function solveLoop() {
 
 function solveAStar() {
   console.log("go away.");
+  var goal = grid[Math.floor(Math.random() * grid.length)][Math.floor(Math.random() * grid[0].length)]; // The target cell.
+  //var goal = grid[grid.length-1][grid[0].length-1];
+  var start = grid[0][0]; // The start cell.
+  //var start = grid[Math.floor(Math.random() * grid.length)][Math.floor(Math.random() * grid[0].length)]; // The start cell.
   for (var i = 0; i < grid[0].length; i++) {
     for (var j = 0; j < grid.length; j++) {
       grid[j][i].heuristic = manhattanDist(grid[j][i], goal);
       grid[j][i].solved = false;
     }
   }
-  var goal = grid[Math.floor(Math.random() * grid.length)][Math.floor(Math.random() * grid[0].length)]; // The target cell.
-  //var goal = grid[grid.length-1][grid[0].length-1];
-  var start = grid[0][0]; // The start cell.
-  //var start = grid[Math.floor(Math.random() * grid.length)][Math.floor(Math.random() * grid[0].length)]; // The start cell.
   
   startPath(start);
   getChildren[start];
