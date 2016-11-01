@@ -85,8 +85,8 @@ function getLowest() {
 function solveLoop() {
   clearCanv(BACKCOL);
   displayGrid();
-  for (var i = 0; i < solveStack.length; i++) {
-    solveStack[i].display(MAGENTA);
+  for (var i = 0; i < closedList.length; i++) {
+    closedList[i].display(MAGENTA);
   }
   goal.display(YELLOW);
   start.display(GREEN);
