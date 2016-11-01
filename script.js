@@ -37,6 +37,7 @@ var current;
 function Cell(i, j) {
   this.heuristic;
   this.parent;
+  this.gCost;
   this.solved = false; // Whether or not this cell is part of a 'solution'.
   this.i = i;
   this.j = j;
