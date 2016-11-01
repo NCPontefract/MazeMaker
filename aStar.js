@@ -97,6 +97,9 @@ function solveLoop(start, goal) {
   openList.splice(nextCell, 1);
   console.log(openList);
   closedList.push(nextCell);
+  for (i = 0; i < closedList.length; i++) {
+    getChildren(i);
+  }
   getChildren(nextCell);
   if (!contains(closedList, goal)) {
     setTimeout(function(){solveLoop(start, goal);}, 5)
