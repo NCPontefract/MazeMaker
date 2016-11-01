@@ -152,7 +152,7 @@ function solveAStar() {
   solveLoop(start, goal);
 }
 
-function trySolve(event) {
+function tryStarSolve(event) {
   if (event.keyCode == 32) {
   console.log("Trying to solve...");
     if (built == true) {
