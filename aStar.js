@@ -54,6 +54,7 @@ function checkNewParent(cell, parent) {
 // Function to add a cell's valid children to the open list.
 function getChildren(cell) {
   var neighbors = cell.getValidOptions(); // Get the neighbors.
+  console.log(neighbors);
   for (var i = 0; i < neighbors.length; i++) {
     checkNewParent(neighbors[i], cell);
     if (!neighbors[i].fCost) {
