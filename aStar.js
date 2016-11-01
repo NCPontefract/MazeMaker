@@ -87,7 +87,7 @@ function getLowest() {
 function tracePath(path, cell) {
   path.push(cell);
   for (var i = 0; i < path.length; i++) {
-    path[i].display(AQUA);
+    path[i].display("51,51,51,");
   }
   setTimeout(function(){tracePath(path, cell.parent);}, 10);
 }
