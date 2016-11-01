@@ -91,6 +91,9 @@ function solveLoop(start, goal) {
     closedList[i].display(MAGENTA);
     getChildren(closedList[i]);
   }
+  for (var i = 2; i < openList.length; i++) {
+    openList[i].display(RED);
+  }
   goal.display(YELLOW);
   start.display(GREEN);
   var nextCell = getLowest();
