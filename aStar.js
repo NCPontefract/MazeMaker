@@ -20,6 +20,7 @@ function startPath(cell) {
   cell.gCost = 0;
   cell.searched = true;
   closedList.push(cell);
+  cell.solved = true;
 }
 // Function to set the g-cost of a cell.
 function setGcost(cell) {
@@ -66,7 +67,7 @@ function getChildren(cell) {
     // If the cell isn't in the open list...
     if (!contains(openList, neighbors[i])) {
       // ...add the cell to the open list.
-      neighbors[i].solved = false;
+      //neighbors[i].solved = true;
       openList.push(neighbors[i]);
     }
   }
@@ -101,6 +102,7 @@ function solveLoop(start, goal) {
   openList.splice(nextCell, 1);
   console.log(openList);
   closedList.push(nextCell);
+  nextCell.solved = true;
   getChildren(nextCell);
   if (!contains(closedList, goal)) {
     setTimeout(function(){solveLoop(start, goal);}, 50)
