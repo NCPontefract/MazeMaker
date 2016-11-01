@@ -138,3 +138,14 @@ function solveAStar() {
   getChildren(nextCell);
   solveLoop(start, goal);
 }
+
+function trySolve(event) {
+  if (event.keyCode == 32) {
+  console.log("Trying to solve...");
+    if (built == true) {
+      solveAStar();
+    } else {
+      console.log("Maze isn't fully built.")
+    }
+  }
+}
