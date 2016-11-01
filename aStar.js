@@ -82,7 +82,7 @@ function getLowest() {
 }
 
 // Function to iterate to solve the maze.
-function solveLoop(goal) {
+function solveLoop(start, goal) {
   clearCanv(BACKCOL);
   displayGrid();
   for (var i = 0; i < closedList.length; i++) {
@@ -115,5 +115,5 @@ function solveAStar() {
   
   startPath(start);
   getChildren[start];
-  solveLoop(goal);
+  solveLoop(start, goal);
 }
