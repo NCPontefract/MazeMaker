@@ -83,6 +83,8 @@ function getLowest() {
 
 // Function to iterate to solve the maze.
 function solveLoop() {
+  clearCanv(BACKCOL);
+  displayGrid();
   for (var i = 0; i < solveStack.length; i++) {
     solveStack[i].display(MAGENTA);
   }
