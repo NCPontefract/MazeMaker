@@ -41,7 +41,12 @@ function checkNewParent(cell, parent) {
     if (cell.gCost > parent.gCost + 1) {
       cell.parent = parent;
       setGcost(cell);
+      setFcost(cell);
     }
+  } else {
+    cell.parent = parent;
+    setGcost(cell);
+    setFcost(cell);
   }
 }
 
