@@ -33,7 +33,7 @@ function setFcost(cell) {
 }
 // Function to get the Manhattan heuristic distance between 2 cells.
 function manhattanDist(cell1, goal) {
-  return (Math.abs(cell1.i - goal.i) + Math.abs(cell1.j - goal.j)) * 16 + 16;
+  return (Math.abs(cell1.i - goal.i) + Math.abs(cell1.j - goal.j));
 }
 
 // Function to check if new route to a cell is better than current.
