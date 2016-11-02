@@ -99,8 +99,8 @@ function tracePath(path, cell) {
 
 // Function to iterate to solve the maze.
 function solveLoop(start, goal) {
-  clearCanv(BACKCOL);
-  displayGrid();
+  //clearCanv(BACKCOL);
+  //displayGrid();
   for (var i = 0; i < closedList.length; i++) {
     closedList[i].display(MAGENTA);
     getChildren(closedList[i]);
@@ -114,7 +114,7 @@ function solveLoop(start, goal) {
   if (contains(openList, goal)) {
     nextCell = goal;
   }
-  nextCell.display(BLUE);
+  //nextCell.display(BLUE);
   openList.splice(nextCell, 1);
   closedList.push(nextCell);
   nextCell.solved = true;
