@@ -77,7 +77,7 @@ function getChildren(cell) {
 function getLowest() {
   var lowest = openList[0];
   for (var i = 0; i < openList.length; i++) {
-    if (openList[i].fCost < lowest.fCost) {
+    if (openList[i].fCost > lowest.fCost) {
       lowest = openList[i];
     }
   }
