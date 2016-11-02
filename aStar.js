@@ -17,6 +17,7 @@ var closedList = [];
 // Function to add the first cell to the closed list.
 function startPath(cell) {
   closedList = [];
+  openList = [];
   cell.gCost = 0;
   cell.searched = true;
   closedList.push(cell);
