@@ -111,16 +111,14 @@ function solveLoop(start, goal) {
   goal.display(YELLOW);
   start.display(GREEN);
   var nextCell = getLowest();
+  if (contains(open list, goal)) {
+    nextCell = goal;
+  }
   nextCell.display(BLUE);
   openList.splice(nextCell, 1);
   closedList.push(nextCell);
   nextCell.solved = true;
   getChildren(nextCell);
-  if (contains(open list, goal)) {
-    nextCell = goal;
-    nextCell.solved = true;
-    closedList.push(nextCell);
-  }
   if (!contains(closedList, goal)) {
     setTimeout(function(){solveLoop(start, goal);}, 5)
   } else {
