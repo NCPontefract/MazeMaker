@@ -111,7 +111,7 @@ function solveLoop(start, goal) {
   goal.display(YELLOW);
   start.display(GREEN);
   var nextCell = getLowest();
-  if (contains(open list, goal)) {
+  if (contains(openList, goal)) {
     nextCell = goal;
   }
   nextCell.display(BLUE);
