@@ -116,6 +116,11 @@ function solveLoop(start, goal) {
   closedList.push(nextCell);
   nextCell.solved = true;
   getChildren(nextCell);
+  if (contains(open list, goal)) {
+    nextCell = goal;
+    nextCell.solved = true;
+    closedList.push(nextCell);
+  }
   if (!contains(closedList, goal)) {
     setTimeout(function(){solveLoop(start, goal);}, 5)
   } else {
