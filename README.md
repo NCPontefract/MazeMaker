@@ -11,4 +11,4 @@ Solving the maze uses the same backtracking method, but uses an heuristic to opt
 
 The maze solver uses the A\* algorithm.
 
-The Java version can\'t solve the maze yet.
+The Java version can't solve the maze yet.
