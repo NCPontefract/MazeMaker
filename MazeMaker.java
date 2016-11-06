@@ -12,12 +12,12 @@ import java.util.Stack;
 
 public class MazeMaker {
     // Global constants.
-    public static final int PIXELS = 5;
+    public static final int PIXELS = 10;
     public static final int XDIM = 960;
     public static final int YDIM = 540;
     public static final int CELLSX = Math.floorDiv(XDIM, PIXELS);
     public static final int CELLSY = Math.floorDiv(YDIM, PIXELS);
-    public static final int TIMESTEP = 50;
+    public static final int TIMESTEP = 10;
     
     public static JFrame wFrame;
     public static JPanel window;
