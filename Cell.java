@@ -2,6 +2,7 @@
 package mazemaker;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Cell {
     // For keeping track of self.
@@ -30,6 +31,31 @@ public class Cell {
         this.walls[3] = true;
         numCells++;
     } // End Constructor.
+    public ArrayList<Cell> checkNeighbors() {
+        ArrayList<Cell> neighbors = new ArrayList<Cell>();
+        Cell[][] grid = MazeMaker.grid;
+        if (this.coords[0] > 0) {
+            if (grid[this.coords[0]-1][this.coords[1]].visited == false) {
+                neighbors.add(grid[this.coords[0]-1][this.coords[1]]);
+            }
+        }
+        if (this.coords[0] < grid.length-1) {
+            if (grid[this.coords[0]+1][this.coords[1]].visited == false) {
+                neighbors.add(grid[this.coords[0]+1][this.coords[1]]);
+            }
+        }
+        if (this.coords[1] > 0) {
+            if (grid[this.coords[0]][this.coords[1]-1].visited == false) {
+                neighbors.add(grid[this.coords[0]][this.coords[1]-1]);
+            }
+        }
+        if (this.coords[1] < grid[0].length-1) {
+            if (grid[this.coords[0]][this.coords[1]+1].visited == false) {
+                neighbors.add(grid[this.coords[0]][this.coords[1]+1]);
+            }
+        }
+        return neighbors;
+    } // End Method.
     // Methods to set field values.
     // Needed for encapsulation - other classes must go through
     // these methods to modify data held by a Cell object.
