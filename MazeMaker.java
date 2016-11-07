@@ -13,14 +13,16 @@ import java.util.Stack;
 public class MazeMaker {
     // Global constants.
     public static final int PIXELS = 10;
-    public static final int XDIM = 960;
-    public static final int YDIM = 540;
+    public static final int XDIM = 640;
+    public static final int YDIM = 360;
     public static final int CELLSX = Math.floorDiv(XDIM, PIXELS);
     public static final int CELLSY = Math.floorDiv(YDIM, PIXELS);
-    public static final int TIMESTEP = 10;
+    public static final int TIMESTEP = 0;
+    public static final int TIMESOLVE = 5;
     
     public static JFrame wFrame;
     public static JPanel window;
+    public static JPanel buttonPanel;
     public static Cell[][] grid;
     
     public static int loopNum;
@@ -29,16 +31,60 @@ public class MazeMaker {
 
     public static void main(String[] args) {
         MazeMaker.loopNum = 0;
-        Border border = BorderFactory.createMatteBorder(1,1,1,1,Color.BLACK);
+        Border border = BorderFactory.createMatteBorder(1,1,1,1,Color.GREEN);
         // Setup the window.
         wFrame = new JFrame("Insert Maze pun here.");
-        wFrame.setSize(XDIM, YDIM);
+        JPanel wContainer = new JPanel(new BorderLayout());
+        wFrame.setMinimumSize(new Dimension(XDIM,YDIM));
         window = new JPanel(new GridLayout(CELLSY, CELLSX));
-        wFrame.add(window);
+        window.setSize(XDIM, YDIM);
+        buttonPanel = new JPanel();
+        JButton solveButton = new JButton("Solve.");
+        solveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                for (int x = 0; x < grid.length; x++) {
+                    for (int y = 0; y < grid[x].length; y++) {
+                        grid[x][y].solved = false;
+                    }
+                }
+                Cell start = grid[0][0];
+                Cell goal = grid[(int)Math.floor(Math.random()*grid.length)][(int)Math.floor(Math.random()*grid[0].length)];
+                Solver solver = new Solver(start, goal);
+                solver.solve();
+            }
+        });
+        buttonPanel.add(solveButton);
+        wContainer.add(window, BorderLayout.CENTER);
+        wContainer.add(buttonPanel, BorderLayout.PAGE_END);
+        wFrame.add(wContainer);
         grid = MazeMaker.makeGrid();
         for (int y = 0; y < grid[0].length; y++) {
             for(int x = 0; x < grid.length; x++) {
-                grid[x][y].panel = new JPanel();
+                grid[x][y].panel = new JButton();
+                grid[x][y].panel.putClientProperty("x", x);
+                grid[x][y].panel.putClientProperty("y", y);
+                grid[x][y].panel.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        for (int x = 0; x < grid.length; x++) {
+                            for (int y = 0; y < grid[x].length; y++) {
+                                grid[x][y].solved = false;
+                                grid[x][y].color = new Color(64,64,64);
+                                grid[x][y].panel.setBackground(new Color(64,64,64));
+                                grid[x][y].display();
+                            }
+                        }
+                        display(grid);
+                        Cell start = grid[0][0];
+                        JButton btn = (JButton)ae.getSource();
+                        int btnx = (int)btn.getClientProperty("x");
+                        int btny = (int)btn.getClientProperty("y");
+                        Cell goal = grid[btnx][btny];
+                        Solver solver = new Solver(start, goal);
+                        solver.solve();
+                    }
+                });
                 window.add(grid[x][y].panel);
                 Border paneEdge = BorderFactory.createMatteBorder(1,1,1,1, Color.GREEN);
                 grid[x][y].panel.setBorder(paneEdge);
@@ -47,16 +93,22 @@ public class MazeMaker {
         }
         wFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Cell current = grid[0][0];
-        current = MazeMaker.makeMaze(current);
+        MazeMaker maze = new MazeMaker();
+        current = maze.makeMaze(current);
         while (!stack.isEmpty()) {
-            current = MazeMaker.makeMaze(current);
+            current = maze.makeMaze(current);
         }
-        MazeMaker.display(grid, new Color(64,64,64));
+        for (int x = 0; x < grid.length; x++) {
+            for (int y = 0; y < grid[0].length; y++) {
+                grid[x][y].color = new Color(64,64,64);
+            }
+        }
+        MazeMaker.display(grid);
     } // End main method.
-    public static Cell makeMaze(Cell current) {
+    public Cell makeMaze(Cell current) {
         MazeMaker.loopNum++;
         //Logic.
-        current.visited = true;
+        current.setVisited(true);
         Cell next;
         ArrayList<Cell> neighbors = current.checkNeighbors();
         if (!neighbors.isEmpty()) {
@@ -69,8 +121,10 @@ public class MazeMaker {
             next = stack.pop();
         }
         // Graphics.
-        if (loopNum % TIMESTEP == 0) {
-            MazeMaker.display(grid, Color.black);
+        if (TIMESTEP != 0) {
+            if (loopNum % TIMESTEP == 0) {
+                MazeMaker.display(grid);
+            }
         }
         return next;
     }
@@ -86,7 +140,7 @@ public class MazeMaker {
         return cellArray;
     } // End method.
     
-    public static void display(Cell[][] grid, Color color) {
+    public static void display(Cell[][] grid) {
         for (int x = 0; x < grid.length; x++) {
             for (int y = 0; y < grid[x].length; y++) {
                 int top = 0;
@@ -107,12 +161,13 @@ public class MazeMaker {
                 }
                 Border paneEdge = BorderFactory.createMatteBorder(top,left,bottom,right, Color.green);
                 grid[x][y].panel.setBorder(paneEdge);
-                grid[x][y].panel.setBackground(color);
+                grid[x][y].panel.setBackground(grid[x][y].color);
             } // End for.
         } // End for.
         //wFrame.setSize(XDIM, YDIM);
         //wFrame.pack();
         wFrame.setVisible(true);
+        buttonPanel.setVisible(true);
         window.setVisible(true);
     } // End Method.
     public static void removeWalls(Cell cell1, Cell cell2) {
@@ -133,6 +188,5 @@ public class MazeMaker {
                 cell2.walls[3] = false;
             }
         }
-    }
-    
+    }    
 } // End class.
