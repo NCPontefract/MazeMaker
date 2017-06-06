@@ -232,7 +232,7 @@ function mazeLoop() {
     current = stack.pop();
   }
   if (!(current == grid[0][0])) {
-    setTimeout(mazeLoop, 0);
+    mazeLoop();
   } else {
 
     displayGrid();

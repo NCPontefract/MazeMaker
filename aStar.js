@@ -120,7 +120,7 @@ function solveLoop(start, goal) {
   nextCell.solved = true;
   getChildren(nextCell);
   if (!contains(closedList, goal)) {
-    setTimeout(function(){solveLoop(start, goal);}, 5)
+    setTimeout(function(){solveLoop(start, goal);}, 1)
   } else {
     var path = [];
     setTimeout(function(){tracePath(path, goal);}, 10);
