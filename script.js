@@ -219,7 +219,7 @@ function displayGrid() {
 
 // Loop to call iteratively.
 function mazeLoop() {
-  displayGrid();
+  //displayGrid();
   document.getElementById("textout").innerHTML = "Stack size: " + stack.length;
   current.visited = true;
   var next = current.checkNeighbors();
@@ -234,6 +234,7 @@ function mazeLoop() {
   if (!(current == grid[0][0])) {
     setTimeout(mazeLoop, 0);
   } else {
+
     displayGrid();
     current.display();
     document.getElementById("buttonzone").innerHTML = "<button id=\"solveButton\"onclick=\"solveAStar()\" onkeypress=\"solveMaze()\">Solve A*.</button>";
