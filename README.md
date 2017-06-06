@@ -10,5 +10,3 @@ The system now has an option to solve the maze once it has been generated.
 Solving the maze uses the same backtracking method, but uses an heuristic to optimise its search pattern.
 
 The maze solver uses the A\* algorithm.
-
-The Java version can't solve the maze yet.
