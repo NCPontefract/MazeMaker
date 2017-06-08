@@ -103,7 +103,7 @@ function solveLoop(start, goal) {
   //displayGrid();
   for (var i = 0; i < closedList.length; i++) {
     closedList[i].display(MAGENTA);
-    getChildren(closedList[i]);
+    //getChildren(closedList[i]);
   }
   for (var i = 2; i < openList.length; i++) {
     openList[i].display(RED);
