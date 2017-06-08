@@ -102,8 +102,8 @@ function solveLoop(start, goal) {
   //clearCanv(BACKCOL);
   //displayGrid();
   for (var i = 0; i < closedList.length; i++) {
-    closedList[i].display(MAGENTA);
-    getChildren(closedList[i]);
+    //closedList[i].display(MAGENTA);
+    getChildren(closedList[i]); // When I remove this it breaks the thing.
   }
   for (var i = 2; i < openList.length; i++) {
     openList[i].display(RED);
@@ -118,6 +118,7 @@ function solveLoop(start, goal) {
   //nextCell.display(BLUE);
   openList.splice(nextCell, 1);
   closedList.push(nextCell);
+  nextCell.display(MAGENTA);
   nextCell.solved = true;
   getChildren(nextCell);
   if (!contains(closedList, goal)) {
@@ -129,6 +130,8 @@ function solveLoop(start, goal) {
 }
 
 function solveAStar() {
+  clearCanv(BACKCOL);
+displayGrid();
   var goal = grid[Math.floor(Math.random() * grid.length)][Math.floor(Math.random() * grid[0].length)]; // The target cell.
   //var goal = grid[grid.length-1][grid[0].length-1];
   var start = grid[0][0]; // The start cell.
@@ -142,8 +145,8 @@ function solveAStar() {
   
   startPath(start);
   getChildren[start];
-  clearCanv(BACKCOL);
-  displayGrid();
+  //clearCanv(BACKCOL);
+  //displayGrid();
   for (var i = 0; i < closedList.length; i++) {
     closedList[i].display(MAGENTA);
   }
